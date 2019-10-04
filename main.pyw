@@ -150,6 +150,9 @@ class App(QtWidgets.QMainWindow, qt_window.Ui_MainWindow):
             return full_string
 
         def write_data(data):
+            if not os.path.exists(os.path.join(os.getcwd(), 'output')):
+                os.makedirs(os.path.join(os.getcwd(), 'output'))
+
             self.file_name = get_file_name()
             directory = 'output\\' + self.file_name
             file = open(directory, 'w')
