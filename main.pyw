@@ -3,7 +3,6 @@ from Cryptodome.Cipher import DES3
 from binascii import unhexlify
 from random import randint
 import qt_window
-#import pyDes
 import sys
 import re
 import os
@@ -175,7 +174,6 @@ class App(QtWidgets.QMainWindow, qt_window.Ui_MainWindow):
             res = self.cypher.encrypt(unhexlify(single_key))
 
             check_val_cypher = DES3.new(unhexlify(single_key), DES3.MODE_ECB)
-            #check_val_cypher = pyDes.triple_des(unhexlify(single_key), pyDes.ECB)
             check_val = check_val_cypher.encrypt(unhexlify('00000000000000000000000000000000'))
             check_val = check_val.hex().upper()[:6]
             self.key_list_2file.append([single_key, res.hex().upper(), check_val])
@@ -208,7 +206,6 @@ class App(QtWidgets.QMainWindow, qt_window.Ui_MainWindow):
             key_in_bytes = unhexlify(self.key)
             try:
                 self.cypher = DES3.new(key_in_bytes, DES3.MODE_ECB)
-                #self.cypher = pyDes.triple_des(key_in_bytes, pyDes.ECB)
                 self.loger.setText('ZMK accepted!\nClear component:{}'.format(self.key))
                 self.zmk_applied = True
 
